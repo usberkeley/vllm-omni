@@ -48,6 +48,11 @@ _OMNI_MODELS = {
         "qwen3_omni_code2wav",
         "Qwen3OmniMoeCode2Wav",
     ),
+    "HunyuanImage3ForCausalMM": (
+        "hunyuan_image3_0",
+        "hunyuan_image3_0",
+        "HunyuanImage3_0ForConditionalGeneration",
+    ),
 }
 
 _VLLM_OMNI_MODELS = {
