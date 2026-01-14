@@ -603,7 +603,7 @@ def _stage_worker(
             stage_engine = OmniDiffusion(**engine_args)
         else:
             # Default to LLM engine
-            stage_engine = OmniLLM(model=model, **engine_args)
+            stage_engine = OmniLLM(model=model, stage_id=stage_id, **engine_args)
     finally:
         # Release all locks by closing file descriptors
         # Locks are automatically released when file descriptors are closed
@@ -1100,7 +1100,7 @@ async def _stage_worker_async(
             )
             vllm_config = None  # Diffusion doesn't use vllm_config
         else:
-            omni_engine_args = AsyncOmniEngineArgs(model=model, **engine_args)
+            omni_engine_args = AsyncOmniEngineArgs(model=model, stage_id=stage_id, **engine_args)
             usage_context = UsageContext.OPENAI_API_SERVER
             vllm_config = omni_engine_args.create_engine_config(usage_context=usage_context)
             stage_engine = AsyncOmniLLM.from_vllm_config(

@@ -51,6 +51,7 @@ class OmniLLM(LLM):
             for IPC. Objects larger than this threshold will use shared memory.
         batch_timeout: Timeout in seconds for batching requests within a stage
         init_timeout: Timeout in seconds for waiting for all stages to initialize
+        stage_id: Identifier for the stage in a multi-stage pipeline (default: 0)
         **kwargs: Additional keyword arguments passed to the base LLM class
             and engine
 
@@ -71,6 +72,7 @@ class OmniLLM(LLM):
         shm_threshold_bytes: int = 65536,
         batch_timeout: int = 10,
         init_timeout: int = 300,
+        stage_id: int = 0,
         **kwargs: Any,
     ):
         """LLM constructor with omni-specific configuration loading."""
@@ -144,6 +146,7 @@ class OmniLLM(LLM):
             model=model,
             compilation_config=compilation_config_instance,
             structured_outputs_config=structured_outputs_instance,
+            stage_id=stage_id,
             **kwargs,
         )
 
